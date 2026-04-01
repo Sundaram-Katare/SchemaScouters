@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const LandingPage = ({ user, onLogout }) => {
+const LandingPage = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [age, setAge] = useState('');
@@ -29,16 +31,18 @@ const LandingPage = ({ user, onLogout }) => {
             <a href="#features" className="hover:text-white transition">Features</a>
             <a href="#contact" className="hover:text-white transition">Contact</a>
           </div>
-          <div className="flex items-center gap-4 ml-auto">
-            <div className="text-right">
-              <p className="text-sm font-semibold text-white">{user?.name}</p>
-              <p className="text-xs text-slate-400">{user?.email}</p>
-            </div>
+          <div className="flex items-center gap-3 ml-auto">
             <button
-              onClick={onLogout}
-              className="rounded-full bg-red-500/20 border border-red-500/40 px-5 py-2 text-sm font-semibold text-red-300 hover:bg-red-500/30 transition"
+              onClick={() => navigate('/auth')}
+              className="rounded-full border border-slate-700 px-6 py-2 text-sm font-semibold text-slate-100 hover:bg-slate-800 transition"
             >
-              Logout
+              Login
+            </button>
+            <button
+              onClick={() => navigate('/auth')}
+              className="rounded-full bg-cyan-400 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition"
+            >
+              Sign Up
             </button>
           </div>
         </div>

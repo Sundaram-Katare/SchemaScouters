@@ -1,14 +1,15 @@
 ﻿import './App.css'
 import { useState, useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import AuthPage from './pages/AuthPage.jsx'
 import LandingPage from './pages/LandingPage.jsx'
+import Explore from './pages/Explore.jsx'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // Check if user is already logged in (on app load)
   useEffect(() => {
     const storedUser = localStorage.getItem('user')
     const token = localStorage.getItem('authToken')
@@ -39,10 +40,19 @@ function App() {
     )
   }
 
-  return authenticated && user ? (
-    <LandingPage user={user} onLogout={handleLogout} />
-  ) : (
-    <AuthPage onAuthenticate={handleAuthenticate} />
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/auth" element={<AuthPage onAuthenticate={handleAuthenticate} />} />
+      <Route 
+        path="/explore" 
+        element={authenticated && user ? (
+          <Explore user={user} onLogout={handleLogout} />
+        ) : (
+          <Navigate to="/" replace />
+        )} 
+      />
+    </Routes>
   )
 }
 

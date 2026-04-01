@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthPage = ({ onAuthenticate }) => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -40,6 +42,9 @@ const AuthPage = ({ onAuthenticate }) => {
 
       // Notify parent component and pass user data
       onAuthenticate(data.user);
+      
+      // Redirect to explore page
+      navigate('/explore');
     } catch (err) {
       setError(err.message || 'An error occurred');
     } finally {
