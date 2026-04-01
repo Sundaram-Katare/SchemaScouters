@@ -1,12 +1,50 @@
 import React, { useState } from 'react';
 
 const AuthPage = ({ onAuthenticate }) => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onAuthenticate();
+    setError('');
+    setLoading(true);
+
+    try {
+      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+      const payload = isLogin
+        ? { email, password }
+        : { name, email, password };
+
+      const response = await fetch(`http://localhost:5000${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || 'Authentication failed');
+        return;
+      }
+
+      // Store the token and user info in localStorage
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      // Notify parent component and pass user data
+      onAuthenticate(data.user);
+    } catch (err) {
+      setError(err.message || 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -15,11 +53,36 @@ const AuthPage = ({ onAuthenticate }) => {
         <div className="w-full max-w-2xl rounded-[2rem] border border-slate-800 bg-slate-900/90 p-10 shadow-2xl shadow-slate-950/40">
           <div className="mb-10 text-center">
             <p className="text-sm uppercase tracking-[0.35em] text-cyan-400">Secure entry</p>
-            <h1 className="mt-4 text-4xl font-black text-white">Please authenticate to continue</h1>
-            <p className="mt-4 text-slate-400">This is a placeholder sign-in. Once you authenticate, you can access the landing experience.</p>
+            <h1 className="mt-4 text-4xl font-black text-white">
+              {isLogin ? 'Login to continue' : 'Create your account'}
+            </h1>
+            <p className="mt-4 text-slate-400">
+              {isLogin
+                ? 'Enter your credentials to access the platform'
+                : 'Sign up to get started with SchemScout'}
+            </p>
           </div>
 
+          {error && (
+            <div className="mb-6 rounded-2xl border border-red-500/30 bg-red-500/10 p-4 text-red-300">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="grid gap-6">
+            {!isLogin && (
+              <div className="grid gap-3">
+                <label className="text-sm font-semibold text-slate-300">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                />
+              </div>
+            )}
             <div className="grid gap-3">
               <label className="text-sm font-semibold text-slate-300">Email</label>
               <input
@@ -27,6 +90,7 @@ const AuthPage = ({ onAuthenticate }) => {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
             </div>
@@ -37,16 +101,37 @@ const AuthPage = ({ onAuthenticate }) => {
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
                 className="w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
             </div>
             <button
               type="submit"
-              className="rounded-full bg-cyan-400 px-8 py-4 text-base font-semibold text-slate-950 shadow-xl shadow-cyan-500/20 hover:bg-cyan-300 transition"
+              disabled={loading}
+              className="rounded-full bg-cyan-400 px-8 py-4 text-base font-semibold text-slate-950 shadow-xl shadow-cyan-500/20 hover:bg-cyan-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Authenticate
+              {loading ? 'Processing...' : isLogin ? 'Login' : 'Sign Up'}
             </button>
           </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-slate-400">
+              {isLogin ? "Don't have an account? " : 'Already have an account? '}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsLogin(!isLogin);
+                  setError('');
+                  setName('');
+                  setEmail('');
+                  setPassword('');
+                }}
+                className="text-cyan-400 hover:text-cyan-300 font-semibold transition"
+              >
+                {isLogin ? 'Sign up' : 'Login'}
+              </button>
+            </p>
+          </div>
         </div>
       </main>
 
