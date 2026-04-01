@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const LandingPage = () => {
+const LandingPage = ({ user, onLogout }) => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [age, setAge] = useState('');
@@ -28,6 +28,18 @@ const LandingPage = () => {
             <a href="#about" className="hover:text-white transition">About</a>
             <a href="#features" className="hover:text-white transition">Features</a>
             <a href="#contact" className="hover:text-white transition">Contact</a>
+          </div>
+          <div className="flex items-center gap-4 ml-auto">
+            <div className="text-right">
+              <p className="text-sm font-semibold text-white">{user?.name}</p>
+              <p className="text-xs text-slate-400">{user?.email}</p>
+            </div>
+            <button
+              onClick={onLogout}
+              className="rounded-full bg-red-500/20 border border-red-500/40 px-5 py-2 text-sm font-semibold text-red-300 hover:bg-red-500/30 transition"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </nav>
