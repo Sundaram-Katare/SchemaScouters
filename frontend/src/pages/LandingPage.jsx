@@ -1,227 +1,231 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
-  const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-  const [age, setAge] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ name, category, age });
-  };
-
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <nav className="sticky top-0 z-30 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-3xl bg-gradient-to-br from-fuchsia-500 to-cyan-400 grid place-items-center text-2xl font-extrabold text-white">
-              S
-            </div>
-            <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-slate-400">SchemScout</p>
-              <p className="text-base font-semibold">Landing Page</p>
-            </div>
-          </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-            <a href="#home" className="hover:text-white transition">Home</a>
-            <a href="#about" className="hover:text-white transition">About</a>
-            <a href="#features" className="hover:text-white transition">Features</a>
-            <a href="#contact" className="hover:text-white transition">Contact</a>
-          </div>
-          <div className="flex items-center gap-3 ml-auto">
-            <button
-              onClick={() => navigate('/auth')}
-              className="rounded-full border border-slate-700 px-6 py-2 text-sm font-semibold text-slate-100 hover:bg-slate-800 transition"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => navigate('/auth')}
-              className="rounded-full bg-cyan-400 px-6 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition"
-            >
-              Sign Up
-            </button>
+    <div className="min-h-screen bg-white font-poppins">
+      
+      {/* Hero Section */}
+      <section className="relative py-28 px-6 text-center animate-fadeIn overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-50/30 rounded-full blur-3xl -z-10 animate-pulse" />
+        
+        <div className="max-w-4xl mx-auto">
+          <span className="inline-block px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-bold mb-6 tracking-wide">
+            POWERED BY GOOGLE GEMINI AI
+          </span>
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-[1.1]">
+            Simplifying Government <br />
+            <span className="text-blue-600">Schemes for You</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-500 mb-12 leading-relaxed font-light max-w-2xl mx-auto">
+            Stop searching blindly. Our AI-driven platform matches you with personalized government benefits in seconds.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <Link to="/register" className="px-10 py-5 bg-blue-600 text-white rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-xl font-bold">
+              Start Matching Now
+            </Link>
+            <Link to="/explore" className="px-10 py-5 bg-gray-50 text-gray-900 rounded-2xl border border-gray-100 hover:bg-gray-100 transition-all duration-300 text-xl font-bold">
+              View All Schemes
+            </Link>
           </div>
         </div>
-      </nav>
+      </section>
 
-      <main>
-        <section id="home" className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 px-6 py-24 md:py-32">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.24),_transparent_40%),radial-gradient(circle_at_30%_70%,_rgba(14,165,233,0.16),_transparent_30%)] pointer-events-none" />
-          <div className="relative max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-center">
-            <div className="space-y-8">
-              <p className="inline-flex items-center gap-3 rounded-full bg-slate-800/70 px-4 py-2 text-sm font-semibold text-cyan-300 ring-1 ring-cyan-400/20">
-                Welcome to SchemScout • Simple, fast, and personalized
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-                Find the right government schemes for you <span className="text-cyan-400">in minutes.</span>
-              </h1>
-              <p className="max-w-2xl text-lg leading-8 text-slate-300">
-                SchemScout matches your profile to central and state benefits, with direct application guidance, deadline alerts, and a clear next step for every scheme.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <a href="#about" className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-8 py-4 text-sm font-semibold text-slate-950 shadow-xl shadow-cyan-500/20 hover:-translate-y-0.5 transition">
-                  About Us
-                </a>
-                <a href="#contact" className="inline-flex items-center justify-center rounded-full border border-slate-700 px-8 py-4 text-sm font-semibold text-slate-100 hover:bg-slate-800 transition">
-                  Contact Us
-                </a>
-              </div>
+      {/* Stats Section */}
+      <section className="py-16 border-y border-gray-50 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-black text-gray-900 mb-2">500+</div>
+              <div className="text-gray-400 text-sm font-medium uppercase tracking-widest">Active Schemes</div>
             </div>
-            <div className="rounded-[2rem] border border-slate-800 bg-slate-900/90 p-8 shadow-2xl shadow-slate-950/50">
-              <div className="grid gap-6">
-                <div className="rounded-3xl bg-slate-800/70 p-6">
-                  <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Your profile</p>
-                  <h2 className="mt-4 text-3xl font-semibold text-white">Age, state, income, occupation</h2>
-                  <p className="mt-3 text-slate-400 leading-7">We use the details you share to surface schemes that are actually available to you.</p>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-3xl bg-slate-950/90 p-5 border border-slate-800">
-                    <p className="text-sm text-slate-400">Fast match</p>
-                    <p className="mt-3 text-xl font-semibold">2-minute setup</p>
-                  </div>
-                  <div className="rounded-3xl bg-slate-950/90 p-5 border border-slate-800">
-                    <p className="text-sm text-slate-400">Direct links</p>
-                    <p className="mt-3 text-xl font-semibold">Apply instantly</p>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <div className="text-4xl font-black text-blue-600 mb-2">1M+</div>
+              <div className="text-gray-400 text-sm font-medium uppercase tracking-widest">Success Stories</div>
+            </div>
+            <div>
+              <div className="text-4xl font-black text-gray-900 mb-2">28+</div>
+              <div className="text-gray-400 text-sm font-medium uppercase tracking-widest">States Covered</div>
+            </div>
+            <div>
+              <div className="text-4xl font-black text-blue-600 mb-2">99%</div>
+              <div className="text-gray-400 text-sm font-medium uppercase tracking-widest">Match Accuracy</div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="about" className="bg-slate-950 px-6 py-24 md:px-12">
-          <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[0.9fr_1.1fr] items-center">
-            <div className="space-y-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-cyan-400">About SchemScout</p>
-              <h2 className="text-4xl font-black text-white">A landing page built to show Home, About, and Contacts clearly.</h2>
-              <p className="max-w-xl text-lg leading-8 text-slate-400">
-                We help citizens discover government programs across health, education, agriculture and more. Each recommendation comes with eligibility insights, deadline reminders, and easy next steps so you can act confidently.
-              </p>
+      {/* Categories Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Schemes by Categories</h2>
+            <p className="text-gray-500 font-light max-w-lg mx-auto">Explore targeted benefits across various sectors tailored for your growth.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Agriculture", count: "120+", icon: "🌾" },
+              { title: "Health", count: "80+", icon: "🏥" },
+              { title: "Education", count: "150+", icon: "🎓" },
+              { title: "Business", count: "60+", icon: "💼" },
+            ].map((cat, i) => (
+              <div key={i} className="p-8 bg-white rounded-3xl border border-gray-100 hover:shadow-xl transition-all duration-500 group cursor-pointer">
+                <div className="text-4xl mb-6 grayscale group-hover:grayscale-0 transition duration-300">{cat.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition">{cat.title}</h3>
+                <p className="text-gray-400 text-sm font-medium">{cat.count} Schemes</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:w-1/2">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+                Get Your Benefits in <br />
+                <span className="text-blue-600 font-black">3 Easy Steps</span>
+              </h2>
+              <div className="space-y-10">
+                {[
+                  { step: "01", title: "Create Profile", desc: "Sign up and provide basic details to build your eligibility profile." },
+                  { step: "02", title: "Describe in AI", desc: "Tell our AI about yourself in natural language. It understands context flawlessly." },
+                  { step: "03", title: "Apply Directly", desc: "Get matched with verified schemes and click to apply on official portals." },
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-6">
+                    <div className="text-4xl font-black text-gray-100">{item.step}</div>
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
+                      <p className="text-gray-500 font-light leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="grid gap-6">
-              {[
-                {
-                  title: 'Personalized matching',
-                  description: 'We compare your age, category, location and income to the latest scheme rules.',
-                },
-                {
-                  title: 'Clear next steps',
-                  description: 'Every scheme includes a simple action plan so you know what to do next.',
-                },
-                {
-                  title: 'Trusted support',
-                  description: 'Get the guidance you need to apply with confidence and avoid missed deadlines.',
-                },
-              ].map((item) => (
-                <div key={item.title} className="rounded-3xl border border-slate-800 bg-slate-900/80 p-8 shadow-xl shadow-slate-950/30">
-                  <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-slate-400 leading-7">{item.description}</p>
-                </div>
-              ))}
+            <div className="lg:w-1/2 w-full h-[500px] bg-gray-50 rounded-[40px] border border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
+               {/* Mock UI Element */}
+               <div className="w-80 p-6 bg-white rounded-3xl shadow-2xl border border-gray-100 rotate-3 transform transition hover:rotate-0 duration-700">
+                  <div className="w-12 h-12 bg-blue-600 rounded-2xl mb-4 shadow-lg flex items-center justify-center text-white text-xl font-bold">AI</div>
+                  <div className="h-4 w-32 bg-gray-100 rounded-full mb-3" />
+                  <div className="h-3 w-56 bg-gray-50 rounded-full mb-6" />
+                  <div className="space-y-3">
+                    <div className="h-10 w-full bg-blue-50 border border-blue-100 rounded-xl" />
+                    <div className="h-10 w-full bg-blue-50 border border-blue-100 rounded-xl" />
+                  </div>
+               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="features" className="bg-slate-900 px-6 py-24 md:px-12">
-          <div className="max-w-7xl mx-auto">
+      {/* Testimonials */}
+      <section className="py-24 bg-gray-50 overflow-hidden">
+         <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <p className="text-sm uppercase tracking-[0.35em] text-cyan-400">What you get</p>
-              <h2 className="mt-4 text-4xl font-black text-white">Features designed for faster results</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Trusted by Thousands</h2>
+              <p className="text-gray-500 font-light">See what our users have to say about their experience.</p>
             </div>
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                {
-                  title: 'Smart filtering',
-                  description: 'Only see schemes that match your exact eligibility profile.',
-                },
-                {
-                  title: 'Deadline alerts',
-                  description: 'Stay on top of application windows so you never miss an opportunity.',
-                },
-                {
-                  title: 'Step-by-step guidance',
-                  description: 'Complete application tasks with clear, easy-to-follow instructions.',
-                },
-              ].map((item) => (
-                <div key={item.title} className="rounded-[2rem] border border-slate-800 bg-slate-950 p-8 shadow-2xl shadow-slate-950/40">
-                  <div className="text-cyan-400 text-3xl font-black mb-4">•</div>
-                  <h3 className="text-2xl font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-slate-400 leading-7">{item.description}</p>
+                { name: "Rajesh Kumar", role: "Farmer, UP", text: "SchemaScouters helped me find the PM-Kisan scheme in minutes. The AI understood exactly what I needed." },
+                { name: "Anita Sharma", role: "Entrepreneur, Delhi", text: "I was looking for a business loan for months. SchemaScouters matched me with the Mudra scheme instantly." },
+                { name: "Suresh Pillai", role: "Worker, Kerala", text: "Simple, easy, and very accurate. The transparency about eligibility is what I liked the most." }
+              ].map((t, i) => (
+                <div key={i} className="p-10 bg-white rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                  <div className="flex gap-1 text-yellow-400 mb-6 text-xl">★★★★★</div>
+                  <p className="text-gray-600 mb-8 italic leading-relaxed text-lg font-light underline decoration-blue-100 underline-offset-8">"{t.text}"</p>
+                  <div>
+                    <h5 className="font-bold text-gray-900">{t.name}</h5>
+                    <p className="text-gray-400 text-sm font-medium">{t.role}</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+         </div>
+      </section>
 
-        <section id="contact" className="bg-slate-950 px-6 py-24 md:px-12">
-          <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-start">
-            <div className="space-y-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-cyan-400">Contact</p>
-              <h2 className="text-4xl font-black text-white">Get in touch with our team</h2>
-              <p className="max-w-xl text-lg leading-8 text-slate-400">
-                Have questions about your eligibility or need help applying? Send us a message and we’ll respond quickly.
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-3xl bg-slate-900/80 p-6 border border-slate-800">
-                  <p className="text-sm text-slate-400">Email</p>
-                  <p className="mt-3 text-lg font-semibold text-white">help@schemscout.com</p>
+      {/* FAQ Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center text-balance">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {[
+              { q: "Is SchemaScouters free to use?", a: "Yes, our primary goal is to help citizens access government benefits without any financial barrier." },
+              { q: "How accurate is the AI matching?", a: "We use state-of-the-art Gemini AI which provides 99% accuracy based on the details you provide." },
+              { q: "Is my personal data safe?", a: "We do not store your sensitive financial information. Your profile details are encrypted and handled with care." }
+            ].map((faq, i) => (
+              <details key={i} className="group border border-gray-100 rounded-3xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex items-center justify-between p-6 bg-white cursor-pointer group-open:bg-blue-50 transition duration-300">
+                  <h4 className="text-lg font-bold text-gray-900">{faq.q}</h4>
+                  <span className="p-2 bg-gray-50 rounded-xl group-open:rotate-180 transition duration-500">▼</span>
+                </summary>
+                <div className="p-6 pt-0 bg-white group-open:bg-blue-50/50">
+                  <p className="text-gray-500 leading-relaxed font-light">{faq.a}</p>
                 </div>
-                <div className="rounded-3xl bg-slate-900/80 p-6 border border-slate-800">
-                  <p className="text-sm text-slate-400">Phone</p>
-                  <p className="mt-3 text-lg font-semibold text-white">+91 98765 43210</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto p-12 md:p-20 bg-gray-900 rounded-[50px] text-center text-white relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-blue-600/10 -z-10" />
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">Your Welfare Starts <br /> With a <span className="text-blue-500 underline underline-offset-8 decoration-white/20">Click</span></h2>
+          <p className="text-xl text-gray-400 mb-12 max-w-lg mx-auto font-light leading-relaxed">
+            Join 1M+ citizens who secured their future using our platform.
+          </p>
+          <Link to="/register" className="px-12 py-5 bg-white text-gray-900 rounded-2xl font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-block">
+            Get Registered Today
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-20 bg-white border-t border-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div className="md:col-span-1">
+              <div className="text-3xl font-bold text-gray-900 mb-6 tracking-tight">
+                Schema<span className="text-blue-600 font-black">Scouters.</span>
+              </div>
+              <p className="text-gray-400 font-light leading-relaxed">
+                Empowering every citizen with the knowledge of their rightful benefits.
+              </p>
+            </div>
+            <div>
+              <h5 className="font-bold text-gray-900 mb-6">Platform</h5>
+              <ul className="space-y-4 text-gray-500 font-light">
+                <li><Link to="/explore" className="hover:text-blue-600 transition">Explore Schemes</Link></li>
+                <li><Link to="/dashboard" className="hover:text-blue-600 transition">AI Matcher</Link></li>
+                <li><Link to="/login" className="hover:text-blue-600 transition">Portal Access</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-bold text-gray-900 mb-6">Support</h5>
+              <ul className="space-y-4 text-gray-500 font-light">
+                <li><a href="#" className="hover:text-blue-600 transition">Contact Us</a></li>
+                <li><a href="#" className="hover:text-blue-600 transition">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-blue-600 transition">Terms of Use</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-bold text-gray-900 mb-6">Connect</h5>
+              <div className="flex gap-4">
+                <div className="w-10 h-10 bg-gray-50 rounded-xl hover:bg-blue-600 transition group cursor-pointer flex items-center justify-center">
+                  <span className="group-hover:text-white text-gray-400">𝕏</span>
+                </div>
+                <div className="w-10 h-10 bg-gray-50 rounded-xl hover:bg-blue-600 transition group cursor-pointer flex items-center justify-center">
+                  <span className="group-hover:text-white text-gray-400">f</span>
                 </div>
               </div>
             </div>
-            <form onSubmit={handleSubmit} className="rounded-[2rem] border border-slate-800 bg-slate-900/80 p-10 shadow-2xl shadow-slate-950/40">
-              <div className="grid gap-5">
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 px-5 py-4 rounded-3xl text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                />
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="w-full bg-slate-950 border border-slate-800 px-5 py-4 rounded-3xl text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                />
-                <textarea
-                  rows="5"
-                  placeholder="Message"
-                  className="w-full bg-slate-950 border border-slate-800 px-5 py-4 rounded-3xl text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                />
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-cyan-400 px-6 py-4 text-base font-semibold text-slate-950 shadow-xl shadow-cyan-500/20 hover:bg-cyan-300 transition"
-                >
-                  Send Message
-                </button>
-              </div>
-            </form>
           </div>
-        </section>
-      </main>
-
-      <footer className="bg-slate-900 border-t border-slate-800 px-6 py-10 text-slate-400">
-        <div className="max-w-7xl mx-auto flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-cyan-400">Contact us</p>
-            <p className="mt-3 max-w-xl text-base leading-7 text-slate-300">
-              Questions? Reach out for help with eligibility, application steps, or scheme details.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <a href="mailto:help@schemscout.com" className="rounded-3xl bg-slate-950/80 px-5 py-4 text-sm text-white border border-slate-800 hover:bg-slate-800 transition">
-              help@schemscout.com
-            </a>
-            <a href="tel:+919876543210" className="rounded-3xl bg-slate-950/80 px-5 py-4 text-sm text-white border border-slate-800 hover:bg-slate-800 transition">
-              +91 98765 43210
-            </a>
+          <div className="pt-8 border-t border-gray-50 text-center text-gray-400 text-sm font-light">
+            © 2024 SchemaScouters. Building a better future for every citizen.
           </div>
         </div>
       </footer>

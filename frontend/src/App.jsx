@@ -1,59 +1,33 @@
-﻿import './App.css'
-import { useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import AuthPage from './pages/AuthPage.jsx'
-import LandingPage from './pages/LandingPage.jsx'
-import Explore from './pages/Explore.jsx'
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import Explore from "./pages/Explore";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+
+import Navbar from "./components/Navbar";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false)
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    const token = localStorage.getItem('authToken')
-    if (storedUser && token) {
-      setUser(JSON.parse(storedUser))
-      setAuthenticated(true)
-    }
-    setLoading(false)
-  }, [])
-
-  const handleAuthenticate = (userData) => {
-    setUser(userData)
-    setAuthenticated(true)
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('user')
-    setUser(null)
-    setAuthenticated(false)
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="text-cyan-400">Loading...</div>
-      </div>
-    )
-  }
+  const isAuthenticated = () => {
+    return localStorage.getItem("token") !== null;
+  };
 
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/auth" element={<AuthPage onAuthenticate={handleAuthenticate} />} />
-      <Route 
-        path="/explore" 
-        element={authenticated && user ? (
-          <Explore user={user} onLogout={handleLogout} />
-        ) : (
-          <Navigate to="/" replace />
-        )} 
-      />
-    </Routes>
-  )
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route 
+          path="/dashboard" 
+          element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />} 
+        />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;
