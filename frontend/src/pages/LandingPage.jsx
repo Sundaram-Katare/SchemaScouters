@@ -184,6 +184,68 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="bg-white rounded-[50px] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+            <div className="md:w-1/2 p-12 md:p-20 bg-blue-600 text-white">
+              <h2 className="text-4xl font-bold mb-8">Get in Touch</h2>
+              <p className="text-blue-100 mb-12 text-lg font-light leading-relaxed">
+                Have questions about specific schemes? Our support team is here to help you navigate the complexities of government benefits.
+              </p>
+              <div className="space-y-8">
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl">📧</div>
+                  <div>
+                    <div className="text-blue-200 text-sm font-medium uppercase tracking-wider">Email Us</div>
+                    <div className="text-xl font-bold">support@schemascouters.gov</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl">📞</div>
+                  <div>
+                    <div className="text-blue-200 text-sm font-medium uppercase tracking-wider">Call Center</div>
+                    <div className="text-xl font-bold">1800-456-7890</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-6">
+                  <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl">📍</div>
+                  <div>
+                    <div className="text-blue-200 text-sm font-medium uppercase tracking-wider">Headquarters</div>
+                    <div className="text-xl font-bold">New Delhi, India</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="md:w-1/2 p-12 md:p-20">
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                    <input type="text" className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-600 outline-none transition" placeholder="John Doe" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
+                    <input type="email" className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-600 outline-none transition" placeholder="john@example.com" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Subject</label>
+                  <input type="text" className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-600 outline-none transition" placeholder="How can we help?" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Message</label>
+                  <textarea className="w-full h-32 px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-600 outline-none transition resize-none" placeholder="Write your message here..."></textarea>
+                </div>
+                <button type="submit" className="w-full py-5 bg-blue-600 text-white rounded-2xl font-bold text-xl hover:shadow-xl hover:bg-blue-700 transition duration-300">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-20 bg-white border-t border-gray-50">
         <div className="max-w-7xl mx-auto px-6">

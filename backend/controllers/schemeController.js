@@ -11,7 +11,7 @@ export const getAllSchemes = async (req, res) => {
 
 export const getFilteredSchemes = async (req, res) => {
   try {
-    const { age, income, state, occupation } = req.body;
+    const { age, income, state, occupation, category } = req.body;
     
     const query = {
       minAge: { $lte: age },
@@ -25,6 +25,10 @@ export const getFilteredSchemes = async (req, res) => {
 
     if (occupation && occupation !== "Any") {
       query.occupation = { $in: [occupation, "All", "Any"] };
+    }
+
+    if (category && category !== "General") {
+      query.category = category;
     }
 
     const schemes = await Scheme.find(query);

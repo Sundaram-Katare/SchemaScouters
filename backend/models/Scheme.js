@@ -9,6 +9,14 @@ const schemeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
+  images: {
+    type: [String],
+    default: [],
+  },
   benefits: {
     type: String,
     required: true,

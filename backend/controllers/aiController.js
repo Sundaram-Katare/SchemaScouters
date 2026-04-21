@@ -22,14 +22,15 @@ export const extractCriteria = async (req, res) => {
       Return a strict JSON object with these keys:
       - age (number)
       - income (number, annual)
-      - state (string, name of the state or "Any" if not mentioned)
       - occupation (string, or "Any" if not mentioned)
+      - category (string, choose ONE from: "Housing", "Health", "Agriculture", "Pension", "Business", "Education", "Labor", "Women", "General")
 
       Default values if not found:
       - age: 18
       - income: 0
       - state: "Any"
       - occupation: "Any"
+      - category: "General"
 
       Output ONLY valid JSON. No markdown blocks, no prefix text.
     `;
@@ -49,6 +50,7 @@ export const extractCriteria = async (req, res) => {
         income: 0,
         state: "Any",
         occupation: "Any",
+        category: "General",
       };
     }
 
